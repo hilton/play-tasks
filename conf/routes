@@ -1,0 +1,3 @@
+POST    /                                       Application.add
+GET     /                                       Application.index
+GET     /delete                                 Application.delete
