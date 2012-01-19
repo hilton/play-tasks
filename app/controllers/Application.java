@@ -1,31 +1,32 @@
 package controllers;
 
-import java.util.List;
-
 import models.Task;
-import play.data.validation.Required;
+import play.data.validation.Valid;
 import play.mvc.Controller;
+
+import java.util.List;
 
 public class Application extends Controller {
 
-	public static void index() {
-		final List tasks = Task.findAll();
-		render(tasks);
-	}
+   public static void index() {
+      final List<Task> tasks = Task.findAll();
+      render(tasks);
+   }
 
-	public static void add(@Required final String title) {
-		if (validation.hasErrors()) {
-			validation.keep();
-			index();
-		}
+   public static void add(@Valid final Task task) {
+      if (validation.hasErrors()) {
+         validation.keep();
+      }
+      else {
+         task.save();
+      }
+      index();
+   }
+   
+   public static void delete(final Long id) {
+      final Task task = Task.findById(id);
+      task.delete();
+      index();
+   }
 
-		new Task(title).save();
-		index();
-	}
-
-	public static void delete(final Long id) {
-		final Task task = Task.findById(id);
-		task.delete();
-		index();
-	}
 }

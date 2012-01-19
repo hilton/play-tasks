@@ -1,3 +1,5 @@
-POST    /                                       Application.add
-GET     /                                       Application.index
-GET     /delete                                 Application.delete
+GET  /              Application.index
+POST /              Application.add
+GET  /delete/{id}   Application.delete
+
+GET  /public/       staticDir:public

@@ -4,15 +4,22 @@
 <h1>${tasks.size()} Task${tasks.pluralize()}</h1>
 
 <ul>
-#{list tasks, as:'task'}
-	<li>${task.title} <a href="@{delete(task.id)}">delete</a></li>
-#{/list}
+  #{list tasks, as:'task'}
+  <li>
+    ${task.title}
+    <a href="@{delete(task.id)}">delete</a>
+  </li>
+  #{/list}
 </ul>
 
-#{errors}
-<p>${error}</p>
-#{/errors}
 
-#{form @Application.add()}
-<p><input name="title"/> <input type="submit" value="Add Task"/></p>
+#{form @add()}
+#{ifErrors}
+<p class="error">Validation failed</p>
+#{/ifErrors}
+<p>
+  <input name="task.title" autofocus>
+  <button type="submit">Add Task</button>
+</p>
+<p class="error">#{error 'task.title'/}</p>
 #{/form}

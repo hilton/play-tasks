@@ -1,2 +1,3 @@
-validation.required=%s is required
-title=Task Title
+model.tasks = Tasks
+validation.required = &{%s} is a required field
+task.title = Task name

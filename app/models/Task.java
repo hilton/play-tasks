@@ -1,14 +1,16 @@
 package models;
 
+import play.data.validation.Required;
+import play.db.jpa.Model;
+
 import javax.persistence.Entity;
 
+/**
+ * A human tasks, e.g. 'Get the presenter a beer'
+ */
 @Entity
-public class Task extends play.db.jpa.Model {
+public class Task extends Model {
 
-	public String title;
-	public boolean done;
-
-	public Task(final String title) {
-		this.title = title;
-	}
+   @Required
+   public String title;
 }
